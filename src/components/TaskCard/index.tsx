@@ -5,8 +5,13 @@ import { MdDone } from "react-icons/md";
 import { styles } from "./styles";
 import { useState } from "react";
 
+type Props = {
+  task: string,
+  onRemove: () => void,
+}
 
-export function ActionCard(description: string) {
+
+export function TaskCard({ task, onRemove }: Props) {
   const [actionDone, setActionDone] = useState(false);
 
   function toggleCardState() {
@@ -23,9 +28,12 @@ export function ActionCard(description: string) {
         { actionDone && <MdDone style={styles.checkedIcon}/> }
       </TouchableOpacity>     
       <Text style={styles.description}>
-        {description}
+        {task}
       </Text>
-      <PiTrash style={styles.trashIcon}/>
+
+      <TouchableOpacity onPress={onRemove}>
+        <PiTrash style={styles.trashIcon} />
+      </TouchableOpacity>    
 
     </View>
   )
