@@ -1,5 +1,5 @@
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert, FlatList, Text, TextInput, TouchableOpacity, View, Image } from "react-native";
 import { TaskCard } from "../../components/TaskCard";
 import { Counter } from "../../components/Counter";
@@ -10,6 +10,8 @@ import Clipboard from '../../../assets/clipboard.png';
 export function Home(){
   
   const [tasks, setTasks] = useState<string[]>([]);
+  const [openTasks, setOpenTasks] = useState(0);
+  const [doneTasks, setDoneTasks] = useState(0);
   const [description, setDescription] = useState('');
 
   function handleTaskAdd() {
@@ -23,6 +25,7 @@ export function Home(){
 
     setTasks(prevState => [...prevState, description]);
     setDescription('');
+    setOpenTasks(openTasks + 1);
   }
 
   function handleCardRemove(task: string) {    
@@ -37,6 +40,19 @@ export function Home(){
       } 
     ])
   }
+
+  function handleTaskDone(checked: boolean) {
+    if (checked) {
+      setOpenTasks(openTasks - 1);
+      setDoneTasks(doneTasks + 1);
+    } else {
+      setOpenTasks(openTasks + 1);
+      setDoneTasks(doneTasks - 1);
+    }    
+  }
+
+  useEffect(() => {    
+  }, [openTasks, doneTasks])
 
   return (
     <View style={styles.container}>
@@ -62,11 +78,11 @@ export function Home(){
       <View style={styles.countersSection}>
         <Counter 
           name={'Criadas'}
-          amount={0}
+          amount={openTasks}
         />
         <Counter 
           name={'Concluídas'}
-          amount={0}
+          amount={doneTasks}
         />
       </View>  
 
@@ -77,6 +93,7 @@ export function Home(){
           <TaskCard 
             key={item} 
             task={item} 
+            onChecked={handleTaskDone}
             onRemove={() => handleCardRemove(item)} 
           />
         )}

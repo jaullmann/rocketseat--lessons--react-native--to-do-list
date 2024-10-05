@@ -29,7 +29,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     textAlign: 'left',
-    fontFamily: 'Inter_500',
     fontSize: 14,
     color: '#F2F2F2'
   }  

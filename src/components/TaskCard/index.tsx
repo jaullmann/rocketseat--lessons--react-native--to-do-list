@@ -8,15 +8,17 @@ import { useState } from "react";
 
 type Props = {
   task: string,
+  onChecked: (done: boolean) => void,
   onRemove: () => void,
 }
 
-
-export function TaskCard({ task, onRemove }: Props) {
+export function TaskCard({ task, onChecked, onRemove }: Props) {
   const [actionDone, setActionDone] = useState(false);
 
   function toggleCardState() {
-    setActionDone(!actionDone);
+    const newStatus = !actionDone; 
+    setActionDone(newStatus);
+    onChecked(newStatus);  
   }
 
   return (

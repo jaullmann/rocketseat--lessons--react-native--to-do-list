@@ -15,7 +15,7 @@ export function Counter({name, amount}: Props) {
         {name}
       </Text>
       <Text style={styles.amount}>
-        {String(amount)}
+        {amount}
       </Text>
     </View>
   )
