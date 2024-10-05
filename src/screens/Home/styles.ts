@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     flex: 1, 
     height: 53,       
     color: '#F2F2F2',
+    fontFamily: 'Inter_500',
     backgroundColor: '#262626',
     borderRadius: 6,
     borderColor: '#0D0D0D',

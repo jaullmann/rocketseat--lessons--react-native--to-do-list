@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
   createdLabel: {
     color: '#1E6F9F',
     fontSize: 14,
-    fontFamily: 'inter'    
+    fontFamily: 'Inter_500'    
   }, 
   doneLabel: {
     color: '#8284FA',
     fontSize: 14,
-    fontFamily: 'inter'    
+    fontFamily: 'Inter_500'   
   },  
   amount: {
     height: 19,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#333333',
     fontSize: 12,
-    fontFamily: 'inter',
+    fontFamily: 'Inter_500',
     color: '#D9D9D9',
     textAlign: 'center',
     textAlignVertical: 'center',

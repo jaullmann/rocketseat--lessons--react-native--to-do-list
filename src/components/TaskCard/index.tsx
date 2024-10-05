@@ -26,7 +26,7 @@ export function TaskCard({ task, onRemove }: Props) {
         style={styles.toggleButton}
         onPress={toggleCardState}
       >
-        { actionDone && <MaterialIcons name="done" size={8} color='#D9D9D9' /> }
+        { actionDone && <MaterialIcons name="done" size={10} color='#D9D9D9' /> }
       </TouchableOpacity>     
       <Text style={styles.description}>
         {task}

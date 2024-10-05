@@ -19,6 +19,8 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: '#4EA8DE',
     borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   checkedIcon: {
     color: '#F2F2F2'
@@ -27,7 +29,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     textAlign: 'left',
-    fontFamily: 'inter',
+    fontFamily: 'Inter_500',
     fontSize: 14,
     color: '#F2F2F2'
   }  
