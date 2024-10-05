@@ -1,6 +1,7 @@
+import AntDesign from '@expo/vector-icons/AntDesign';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
 import { Text, TouchableOpacity, View } from "react-native";
-import { PiTrash } from "react-icons/pi";
-import { MdDone } from "react-icons/md";
 
 import { styles } from "./styles";
 import { useState } from "react";
@@ -25,14 +26,14 @@ export function TaskCard({ task, onRemove }: Props) {
         style={styles.toggleButton}
         onPress={toggleCardState}
       >
-        { actionDone && <MdDone style={styles.checkedIcon}/> }
+        { actionDone && <MaterialIcons name="done" size={8} color='#D9D9D9' /> }
       </TouchableOpacity>     
       <Text style={styles.description}>
         {task}
       </Text>
 
       <TouchableOpacity onPress={onRemove}>
-        <PiTrash style={styles.trashIcon} />
+        <AntDesign name="delete" size={16} color='#808080' />
       </TouchableOpacity>    
 
     </View>
