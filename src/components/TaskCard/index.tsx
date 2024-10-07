@@ -23,21 +23,22 @@ export function TaskCard({ task, onChecked, onRemove }: Props) {
 
   return (
     <View style={styles.container}>
-
       <TouchableOpacity
         style={styles.toggleButton}
         onPress={toggleCardState}
       >
-        { actionDone && <MaterialIcons name="done" size={10} color='#D9D9D9' /> }
-      </TouchableOpacity>     
-      <Text style={styles.description}>
+        {actionDone && <MaterialIcons name="done" size={10} color='#D9D9D9' />}
+      </TouchableOpacity>      
+      
+      <Text
+        style={[styles.description, actionDone && styles.doneText]}
+      >
         {task}
       </Text>
 
       <TouchableOpacity onPress={onRemove}>
         <AntDesign name="delete" size={16} color='#808080' />
-      </TouchableOpacity>    
-
+      </TouchableOpacity>
     </View>
   )
 }

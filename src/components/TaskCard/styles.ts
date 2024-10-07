@@ -31,5 +31,9 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 14,
     color: '#F2F2F2'
-  }  
+  },
+  doneText: {
+    textDecorationLine: 'line-through',
+    color: '#808080',
+  }
 })

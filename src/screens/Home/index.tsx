@@ -8,52 +8,66 @@ import MainLogo from '../../../assets/appLogo.png';
 import Clipboard from '../../../assets/clipboard.png';
 
 export function Home(){
+
+  type Task = {
+    id: number;
+    text: string;
+    done: boolean;
+  };
   
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [taskCounter, setTaskCounter] = useState(0);
   const [openTasks, setOpenTasks] = useState(0);
   const [doneTasks, setDoneTasks] = useState(0);
   const [description, setDescription] = useState('');
 
-  function handleTaskAdd() {
-    if (tasks.includes(description)) {
-      return Alert.alert("Erro", "Essa tarefa já foi registrada!");
-    }
+  const openTasksArray = tasks.filter(task => !task.done);
+  const doneTasksArray = tasks.filter(task => task.done);
+  const displayedTasks = openTasksArray.concat(doneTasksArray);
 
+  function handleTaskAdd() {
     if (description.length < 4) {
       return Alert.alert("Erro", "Digite uma tarefa válida para adicionar.");
     }
-
-    setTasks(prevState => [...prevState, description]);
+    const index = taskCounter;
+    setTasks(prevState => [...prevState, { id: index, text: description, done: false }]);
     setDescription('');
+    setTaskCounter(index + 1);
     setOpenTasks(openTasks + 1);
   }
 
-  function handleCardRemove(task: string) {    
-    Alert.alert("Remover", `Excluir a tarefa "${task}"?`, [
-      {
-        text: 'Sim',
-        onPress: () => setTasks(prevState => prevState.filter(taskDescription => taskDescription !== task))
-      },
-      {
-        text: 'Não',
-        style: 'cancel'
-      } 
-    ])
+  function handleCardRemove(key: number) {
+    const taskToRemove = tasks.find(task => task.id === key);
+    if (taskToRemove) {
+      Alert.alert("Remover", `Excluir a tarefa "${taskToRemove.text}"?`, [
+        {
+          text: 'Sim',
+          onPress: () => setTasks(prevState => prevState.filter(task => task.id !== key))
+        },
+        {
+          text: 'Não',
+          style: 'cancel'
+        } 
+      ]);
+    }
+  }
+  
+  function handleTaskDone(key: number) {
+    const pressedTask = tasks.find(task => task.id === key);
+    if (pressedTask) {
+      setTasks(prevState => prevState.map(task => 
+        task.id === key ? { ...task, done: !task.done } : task
+      ));
+    }
   }
 
-  function handleTaskDone(checked: boolean) {
-    if (checked) {
-      setOpenTasks(openTasks - 1);
-      setDoneTasks(doneTasks + 1);
-    } else {
-      setOpenTasks(openTasks + 1);
-      setDoneTasks(doneTasks - 1);
-    }    
-  }
-
-  useEffect(() => {    
-  }, [openTasks, doneTasks])
-
+  useEffect(() => {
+    const openTasksCount = tasks.filter(task => !task.done).length;
+    const doneTasksCount = tasks.filter(task => task.done).length;
+    setOpenTasks(openTasksCount);
+    setDoneTasks(doneTasksCount);
+  }, [tasks]);
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>        
@@ -87,14 +101,13 @@ export function Home(){
       </View>  
 
       <FlatList
-        data={tasks}
-        keyExtractor={(item) => item}
+        data={displayedTasks}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TaskCard 
-            key={item} 
-            task={item} 
-            onChecked={handleTaskDone}
-            onRemove={() => handleCardRemove(item)} 
+          <TaskCard            
+            task={item.text} 
+            onChecked={() => handleTaskDone(item.id)}
+            onRemove={() => handleCardRemove(item.id)} 
           />
         )}
         showsVerticalScrollIndicator={false}
