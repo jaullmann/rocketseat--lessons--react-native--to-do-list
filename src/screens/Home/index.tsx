@@ -7,23 +7,19 @@ import { styles } from "./styles";
 import MainLogo from '../../../assets/appLogo.png';
 import Clipboard from '../../../assets/clipboard.png';
 
-export function Home(){
+type Task = {
+  id: number;
+  text: string;
+  done: boolean;
+};
 
-  type Task = {
-    id: number;
-    text: string;
-    done: boolean;
-  };
-  
+export function Home(){ 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskCounter, setTaskCounter] = useState(0);
   const [openTasks, setOpenTasks] = useState(0);
   const [doneTasks, setDoneTasks] = useState(0);
   const [description, setDescription] = useState('');
-
-  const openTasksArray = tasks.filter(task => !task.done);
-  const doneTasksArray = tasks.filter(task => task.done);
-  const displayedTasks = openTasksArray.concat(doneTasksArray);
+  const [displayedTasks, setDisplayedTasks] = useState<Task[]>([]);  
 
   function handleTaskAdd() {
     if (description.length < 4) {
@@ -66,8 +62,12 @@ export function Home(){
     const doneTasksCount = tasks.filter(task => task.done).length;
     setOpenTasks(openTasksCount);
     setDoneTasks(doneTasksCount);
+
+    const openTasksArray = tasks.filter(task => !task.done);
+    const doneTasksArray = tasks.filter(task => task.done);
+    setDisplayedTasks(openTasksArray.concat(doneTasksArray));
   }, [tasks]);
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>        
