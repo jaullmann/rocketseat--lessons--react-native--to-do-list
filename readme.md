@@ -4,7 +4,7 @@
 
 <p>Projeto de aplicativo básico de gestão de tarefas, desenvolvido para fins de <strong>aprendizado</strong> como desafio de conclusão do Módulo 1, para o curso React Native da Rocketseat.</p>
 
-<p>Em termos de aprendizado, o desafio contemplou a prática de várias habilidades importantes no aprendizado do desenvolvimento mobile, das quais pode ser destacadas:</p>
+<p>Em termos de aprendizado, o desafio contemplou a prática de várias habilidades importantes na trilha de desenvolvimento mobile, das quais pode ser destacadas:</p>
 
 <ul>
   <li>Iniciação com uso do TypeScript, com foco na declaração de tipos de variáveis e objetos;</li>
