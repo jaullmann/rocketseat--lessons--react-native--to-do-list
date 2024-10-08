@@ -1,3 +1,5 @@
+![Uploading project_cover.png…]()
+
 <h1>ToDo List - Aplicação Mobile</h1>
 
 <p>Projeto de aplicativo básico de gestão de tarefas, desenvolvido para fins de <strong>aprendizado</strong> como desafio de conclusão do Módulo 1, para o curso React Native da Rocketseat.</p>
