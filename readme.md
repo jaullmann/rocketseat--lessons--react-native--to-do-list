@@ -1,4 +1,4 @@
-![Uploading project_cover.png…]()
+![project_cover](https://github.com/user-attachments/assets/a9beb06d-aec8-4730-b83d-d2f7d233607c)
 
 <h1>ToDo List - Aplicação Mobile</h1>
 
